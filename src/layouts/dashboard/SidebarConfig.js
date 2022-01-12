@@ -21,12 +21,12 @@ const sidebarConfig = [{
     },
     {
         title: 'students',
-        path: '/dashboard/students',
+        path: '/dashboard/user',
         icon: getIcon(peopleFill)
     },
     {
         title: 'timetables',
-        path: '/dashboard/timetables',
+        path: '/dashboard/products',
         icon: getIcon(shoppingBagFill)
     },
     {

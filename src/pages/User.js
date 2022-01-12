@@ -18,7 +18,7 @@ import {
   Container,
   Typography,
   TableContainer,
-  TablePagination
+  TablePagination,
 } from '@mui/material';
 // components
 import Page from '../components/Page';
@@ -32,12 +32,12 @@ import USERLIST from '../_mocks_/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
+  { id: 'name', label: 'Nom & Prenom', alignRight: false },
+  { id: 'company', label: 'Filière', alignRight: false },
+  { id: 'role', label: 'HR abs', alignRight: false },
+  { id: 'isVerified', label: 'Promo', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
-  { id: '' }
+  { id: '' },
 ];
 
 // ----------------------------------------------------------------------
@@ -106,7 +106,7 @@ export default function User() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected.slice(selectedIndex + 1),
       );
     }
     setSelected(newSelected);
@@ -136,16 +136,15 @@ export default function User() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
-          </Typography>
+            User{' '}
+          </Typography>{' '}
           <Button
             variant="contained"
             component={RouterLink}
             to="#"
-            startIcon={<Icon icon={plusFill} />}
-          >
-            New User
-          </Button>
+            startIcon={<Icon icon={plusFill} />}>
+            New User{' '}
+          </Button>{' '}
         </Stack>
 
         <Card>
@@ -166,8 +165,9 @@ export default function User() {
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
-                />
+                />{' '}
                 <TableBody>
+                  {' '}
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
@@ -181,59 +181,56 @@ export default function User() {
                           tabIndex={-1}
                           role="checkbox"
                           selected={isItemSelected}
-                          aria-checked={isItemSelected}
-                        >
+                          aria-checked={isItemSelected}>
                           <TableCell padding="checkbox">
                             <Checkbox
                               checked={isItemSelected}
                               onChange={(event) => handleClick(event, name)}
-                            />
+                            />{' '}
                           </TableCell>
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" alignItems="center" spacing={2}>
-                              <Avatar alt={name} src={avatarUrl} />
+                              <Avatar alt={name} src={avatarUrl} />{' '}
                               <Typography variant="subtitle2" noWrap>
-                                {name}
-                              </Typography>
-                            </Stack>
-                          </TableCell>
-                          <TableCell align="left">{company}</TableCell>
-                          <TableCell align="left">{role}</TableCell>
-                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                                {' '}
+                                {name}{' '}
+                              </Typography>{' '}
+                            </Stack>{' '}
+                          </TableCell>{' '}
+                          <TableCell align="left"> {company} </TableCell>{' '}
+                          <TableCell align="left"> {role} </TableCell>{' '}
+                          <TableCell align="left"> {isVerified ? 'Yes' : 'No'} </TableCell>{' '}
                           <TableCell align="left">
                             <Label
                               variant="ghost"
-                              color={(status === 'banned' && 'error') || 'success'}
-                            >
-                              {sentenceCase(status)}
-                            </Label>
+                              color={(status === 'banned' && 'error') || 'success'}>
+                              {sentenceCase(status)}{' '}
+                            </Label>{' '}
                           </TableCell>
-
                           <TableCell align="right">
                             <UserMoreMenu />
-                          </TableCell>
+                          </TableCell>{' '}
                         </TableRow>
                       );
-                    })}
+                    })}{' '}
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
+                      <TableCell colSpan={6} />{' '}
                     </TableRow>
-                  )}
-                </TableBody>
+                  )}{' '}
+                </TableBody>{' '}
                 {isUserNotFound && (
                   <TableBody>
                     <TableRow>
                       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
-                      </TableCell>
-                    </TableRow>
+                        <SearchNotFound searchQuery={filterName} />{' '}
+                      </TableCell>{' '}
+                    </TableRow>{' '}
                   </TableBody>
-                )}
+                )}{' '}
               </Table>
             </TableContainer>
           </Scrollbar>
-
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
