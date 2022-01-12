@@ -9,44 +9,46 @@ import alertTriangleFill from '@iconify/icons-eva/alert-triangle-fill';
 
 // ----------------------------------------------------------------------
 
-const getIcon = (name) => <Icon icon={name} width={22} height={22} />;
+const getIcon = (name) => < Icon icon = { name }
+width = { 22 }
+height = { 22 }
+/>;
 
-const sidebarConfig = [
-  {
-    title: 'dashboard',
-    path: '/dashboard/app',
-    icon: getIcon(pieChart2Fill)
-  },
-  {
-    title: 'user',
-    path: '/dashboard/user',
-    icon: getIcon(peopleFill)
-  },
-  {
-    title: 'product',
-    path: '/dashboard/products',
-    icon: getIcon(shoppingBagFill)
-  },
-  {
-    title: 'blog',
-    path: '/dashboard/blog',
-    icon: getIcon(fileTextFill)
-  },
-  {
-    title: 'login',
-    path: '/login',
-    icon: getIcon(lockFill)
-  },
-  {
-    title: 'register',
-    path: '/register',
-    icon: getIcon(personAddFill)
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: getIcon(alertTriangleFill)
-  }
+const sidebarConfig = [{
+        title: 'dashboard',
+        path: '/dashboard/app',
+        icon: getIcon(pieChart2Fill)
+    },
+    {
+        title: 'students',
+        path: '/dashboard/students',
+        icon: getIcon(peopleFill)
+    },
+    {
+        title: 'timetables',
+        path: '/dashboard/timetables',
+        icon: getIcon(shoppingBagFill)
+    },
+    {
+        title: 'test2',
+        path: '/dashboard/blog',
+        icon: getIcon(fileTextFill)
+    },
+    {
+        title: 'login',
+        path: '/login',
+        icon: getIcon(lockFill)
+    },
+    {
+        title: 'register',
+        path: '/register',
+        icon: getIcon(personAddFill)
+    },
+    {
+        title: 'Not found',
+        path: '/404',
+        icon: getIcon(alertTriangleFill)
+    }
 ];
 
 export default sidebarConfig;
