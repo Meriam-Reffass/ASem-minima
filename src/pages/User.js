@@ -132,18 +132,18 @@ export default function User() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User | Minimal-UI">
+    <Page title="Etudiants | ASEM">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User{' '}
+            Etudiant{' '}
           </Typography>{' '}
           <Button
             variant="contained"
             component={RouterLink}
             to="#"
             startIcon={<Icon icon={plusFill} />}>
-            New User{' '}
+            Nouveau Etudiant{' '}
           </Button>{' '}
         </Stack>
 
@@ -197,13 +197,13 @@ export default function User() {
                               </Typography>{' '}
                             </Stack>{' '}
                           </TableCell>{' '}
-                          <TableCell align="left"> {company} </TableCell>{' '}
                           <TableCell align="left"> {role} </TableCell>{' '}
-                          <TableCell align="left"> {isVerified ? 'Yes' : 'No'} </TableCell>{' '}
+                          <TableCell align="left"> {company} </TableCell>{' '}
+                          <TableCell align="left"> {isVerified } </TableCell>{' '}
                           <TableCell align="left">
                             <Label
                               variant="ghost"
-                              color={(status === 'banned' && 'error') || 'success'}>
+                              color={(status === 'Exclusion'  && 'error') || (status === 'Blame'  && 'warning') || 'info'}>
                               {sentenceCase(status)}{' '}
                             </Label>{' '}
                           </TableCell>
