@@ -16,7 +16,11 @@ import {
   AppCurrentSubject,
   AppConversionRates
 } from '../components/_dashboard/app';
-
+import {
+ 
+  ProductCartWidget,
+  
+} from '../components/_dashboard/products';
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
@@ -24,7 +28,7 @@ export default function DashboardApp() {
     <Page title="Dashboard-ASem">
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
-          <Typography variant="h4">Hi, Welcome to ASem !</Typography>
+          <Typography variant="h4">Hi, Welcome back student !</Typography>
         </Box>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
@@ -40,13 +44,13 @@ export default function DashboardApp() {
             <AppBugReports />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={12} lg={12}>
             <AppWebsiteVisits />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={4}>
+         {/*<Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits />
-          </Grid>
+  </Grid>*/}
 
           <Grid item xs={12} md={12} lg={12}>
             <AppConversionRates />
@@ -72,6 +76,7 @@ export default function DashboardApp() {
             <AppTasks />
           </Grid> */}
         </Grid>
+        <ProductCartWidget />
       </Container>
     </Page>
   );

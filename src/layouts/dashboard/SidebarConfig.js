@@ -24,11 +24,11 @@ const sidebarConfig = [{
         path: '/dashboard/user',
         icon: getIcon(peopleFill)
     },
-    // {
-    //     title: 'timetables',
-    //     path: '/dashboard/products',
-    //     icon: getIcon(shoppingBagFill)
-    // },
+     {
+         title: 'timetables',
+         path: '/dashboard/products',
+         icon: getIcon(shoppingBagFill)
+     },
     {
         title: 'timetables',
         path: '/dashboard/blog',

@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import shoppingCartFill from '@iconify/icons-eva/shopping-cart-fill';
+import qrCodeScan from '@iconify/icons-bi/qr-code-scan';
 // material
 import { styled } from '@mui/material/styles';
 import { Badge } from '@mui/material';
@@ -15,9 +15,10 @@ const RootStyle = styled('div')(({ theme }) => ({
   alignItems: 'center',
   top: theme.spacing(16),
   height: theme.spacing(5),
-  paddingLeft: theme.spacing(2),
-  paddingRight: theme.spacing(2),
-  paddingTop: theme.spacing(1.25),
+  paddingLeft: theme.spacing(2.5),
+  paddingRight: theme.spacing(2.5),
+  paddingTop: theme.spacing(2.4),
+  paddingBottom: theme.spacing(2.4),
   boxShadow: theme.customShadows.z20,
   color: theme.palette.text.primary,
   backgroundColor: theme.palette.background.paper,
@@ -32,8 +33,8 @@ const RootStyle = styled('div')(({ theme }) => ({
 export default function CartWidget() {
   return (
     <RootStyle>
-      <Badge showZero badgeContent={0} color="error" max={99}>
-        <Icon icon={shoppingCartFill} width={24} height={24} />
+      <Badge  color="error" max={99}>
+        <Icon icon={qrCodeScan} width={36} height={36} />
       </Badge>
     </RootStyle>
   );

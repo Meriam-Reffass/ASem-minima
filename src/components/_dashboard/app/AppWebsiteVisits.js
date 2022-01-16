@@ -9,22 +9,22 @@ import { BaseOptionChart } from '../../charts';
 
 const CHART_DATA = [
   {
-    name: 'Absences justifiées',
+    name: 'Justified absences',
     type: 'column',
     data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
   },
   {
-    name: 'Absences non justifiées',
+    name: 'Unjustified absences',
     type: 'line',
     data: [23, 31, 1, 27, 13, 2, 37,3, 10, 15, 30]
   },
   {
-    name: 'Avertissements',
+    name: 'Warnings',
     type: 'line',
     data: [12, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
   },
   {
-    name: 'Exclusion',
+    name: 'Exclusions',
     type: 'line',
     data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
   }
@@ -65,7 +65,7 @@ export default function AppWebsiteVisits() {
 
   return (
     <Card>
-      <CardHeader title="Statistiques"
+      <CardHeader title="Monthly attendance"
       //  subheader="(+43%) than last year"
         />
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">

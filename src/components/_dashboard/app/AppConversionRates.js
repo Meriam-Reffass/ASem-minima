@@ -28,19 +28,19 @@ export default function AppConversionRates() {
     },
     xaxis: {
       categories: [
-        'Lundi',
-        'Mardi',
-        'Mercredi',
-        'Jeudi',
-        'Vendredi',
-        'Samedi',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
       ]
     }
   });
 
   return (
     <Card>
-      <CardHeader title="Absences par Jour" 
+      <CardHeader title="Daily attendance" 
       
       // subheader="(+43%) than last year" 
       
