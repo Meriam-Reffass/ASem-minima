@@ -52,7 +52,7 @@ export default function BlogPostsSearch({ posts }) {
         renderInput={(params) => (
           <TextField
             {...params}
-            placeholder="Search post..."
+            placeholder="Search Timetable..."
             InputProps={{
               ...params.InputProps,
               startAdornment: (
@@ -63,7 +63,7 @@ export default function BlogPostsSearch({ posts }) {
                       icon={searchFill}
                       sx={{
                         ml: 1,
-                        width: 20,
+                        width: 40,
                         height: 20,
                         color: 'text.disabled'
                       }}

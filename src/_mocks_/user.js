@@ -11,10 +11,10 @@ const users = [...Array(24)].map((_, index) => ({
   name: faker.name.findName(),
   company: faker.random.number({
     'min': 0,
-    'max': 10
+    'max': 30
 }),
   isVerified: sample(['INE1', 'INE2','INE3']),
-  status: sample(['Avertissement', 'Blame','Exclusion']),
+  status: sample(['No censure','Warning', 'Blame','Exclusion']),
   role: sample([
     'CLOUD',
     'ASEDS',
@@ -26,5 +26,4 @@ const users = [...Array(24)].map((_, index) => ({
     
   ])
 }));
-
 export default users;

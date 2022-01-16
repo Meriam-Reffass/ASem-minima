@@ -40,12 +40,12 @@ const ContentStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 export default function Login() {
   return (
-    <RootStyle title="Login | Minimal-UI">
+    <RootStyle title="Login-ASem">
       <AuthLayout>
-        {/* Don’t have an account? &nbsp;
+        Don’t have an account ? &nbsp;
         <Link underline="none" variant="subtitle2" component={RouterLink} to="/register">
           Get started
-        </Link> */}
+        </Link>
       </AuthLayout>
 
       <MHidden width="mdDown">
@@ -63,7 +63,7 @@ export default function Login() {
             <Typography variant="h4" gutterBottom>
               Sign in to ASem
             </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>Enter your details below.</Typography>
+            <Typography sx={{ color: 'text.secondary' }}>Enter your details below !</Typography>
           </Stack>
           {/* <AuthSocial /> */}
 
@@ -71,7 +71,7 @@ export default function Login() {
 
           <MHidden width="smUp">
             <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-              Don’t have an account?&nbsp;
+              Don’t have an account ?&nbsp;
               <Link variant="subtitle2" component={RouterLink} to="register">
                 Get started
               </Link>

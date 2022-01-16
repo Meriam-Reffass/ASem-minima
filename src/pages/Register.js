@@ -41,11 +41,11 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function Register() {
   return (
-    <RootStyle title="Register | Minimal-UI">
+    <RootStyle title="Register-ASem">
       <AuthLayout>
-        Already have an account ?
+        Already have an account ? &nbsp;
         <Link underline="none" variant="subtitle2" component={RouterLink} to="/login">
-          &#32;Login
+          &#32; Login
         </Link>
       </AuthLayout>
       <MHidden width="mdDown">
@@ -60,8 +60,9 @@ export default function Register() {
         <ContentStyle>
           <Box sx={{ mb: 3 }}>
             <Typography variant="h4" gutterBottom>
-              Get started absolutely free.
+              Sign up to ASem
             </Typography>{' '}
+            <Typography sx={{ color: 'text.secondary' }}>Enter your details below !</Typography>
           </Box>
           {/* <AuthSocial /> */}
           <RegisterForm />

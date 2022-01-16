@@ -13,7 +13,6 @@ import POSTS from '../_mocks_/blog';
 
 const SORT_OPTIONS = [
   { value: 'latest', label: 'Latest' },
-  { value: 'popular', label: 'Popular' },
   { value: 'oldest', label: 'Oldest' }
 ];
 
@@ -21,11 +20,13 @@ const SORT_OPTIONS = [
 
 export default function Blog() {
   return (
-    <Page title="Dashboard: Blog | Minimal-UI">
+    <Page title="Timetables-ASem">
       <Container>
+
+
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Blog
+            Timetables
           </Typography>
           <Button
             variant="contained"
@@ -33,9 +34,10 @@ export default function Blog() {
             to="#"
             startIcon={<Icon icon={plusFill} />}
           >
-            New Post
+            New timetable
           </Button>
         </Stack>
+
 
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
           <BlogPostsSearch posts={POSTS} />
@@ -43,10 +45,8 @@ export default function Blog() {
         </Stack>
 
         <Grid container spacing={3}>
-          {POSTS.map((post, index) => (
-            <BlogPostCard key={post.id} post={post} index={index} />
-          ))}
-        </Grid>
+          
+        </Grid> 
       </Container>
     </Page>
   );

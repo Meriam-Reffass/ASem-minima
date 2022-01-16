@@ -32,10 +32,10 @@ import USERLIST from '../_mocks_/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Nom & Prenom', alignRight: false },
-  { id: 'company', label: 'Filière', alignRight: false },
-  { id: 'role', label: 'HR abs', alignRight: false },
-  { id: 'isVerified', label: 'Promo', alignRight: false },
+  { id: 'name', label: 'Name', alignRight: false },
+  { id: 'company', label: 'Speciality', alignRight: false },
+  { id: 'role', label: 'In Hours', alignRight: false },
+  { id: 'isVerified', label: 'Level', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
 ];
@@ -132,18 +132,18 @@ export default function User() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="Etudiants | ASEM">
+    <Page title="Students-ASem">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Etudiant{' '}
+            Student{' '}
           </Typography>{' '}
           <Button
             variant="contained"
             component={RouterLink}
             to="#"
             startIcon={<Icon icon={plusFill} />}>
-            Nouveau Etudiant{' '}
+            New Student{' '}
           </Button>{' '}
         </Stack>
 
@@ -203,7 +203,7 @@ export default function User() {
                           <TableCell align="left">
                             <Label
                               variant="ghost"
-                              color={(status === 'Exclusion'  && 'error') || (status === 'Blame'  && 'warning') || 'info'}>
+                              color={(status === 'Exclusion'  && 'error') || (status === 'Blame'  && 'warning') || (status === 'Warning'  && 'info') || 'success'}>
                               {sentenceCase(status)}{' '}
                             </Label>{' '}
                           </TableCell>
