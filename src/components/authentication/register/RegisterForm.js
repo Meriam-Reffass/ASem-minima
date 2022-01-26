@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useState,forwardRef } from 'react';
 import { Icon } from '@iconify/react';
 import { useFormik, Form, FormikProvider } from 'formik';
 import eyeFill from '@iconify/icons-eva/eye-fill';
@@ -11,6 +11,10 @@ import { LoadingButton } from '@mui/lab';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
@@ -132,9 +136,9 @@ export default function RegisterForm() {
         </Stack>
       </Form>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <MuiAlert onClose={handleClose} elevation={6}  variant="filled" severity="error" sx={{ width: '100%' }}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
           {error}
-        </MuiAlert>
+        </Alert>
       </Snackbar>
     </FormikProvider>
   );
