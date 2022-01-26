@@ -24,31 +24,32 @@ const sidebarConfig = [{
         path: '/dashboard/user',
         icon: getIcon(peopleFill)
     },
-     {
-         title: 'timetables',
-         path: '/dashboard/products',
-         icon: getIcon(shoppingBagFill)
-     },
+    {
+        title: 'timetables',
+        path: '/dashboard/products',
+        icon: getIcon(shoppingBagFill)
+    },
     {
         title: 'timetables',
         path: '/dashboard/blog',
         icon: getIcon(fileTextFill)
     },
-    {
-        title: 'login',
-        path: '/login',
-        icon: getIcon(lockFill)
-    },
-    {
-        title: 'register',
-        path: '/register',
-        icon: getIcon(personAddFill)
-    },
+    // {
+    //     title: 'login',
+    //     path: '/login',
+    //     icon: getIcon(lockFill)
+    // },
+    // {
+    //     title: 'register',
+    //     path: '/register',
+    //     icon: getIcon(personAddFill)
+    // },
     // {
     //     title: 'Not found',
     //     path: '/404',
     //     icon: getIcon(alertTriangleFill)
     //}
+
 ];
 
 export default sidebarConfig;
