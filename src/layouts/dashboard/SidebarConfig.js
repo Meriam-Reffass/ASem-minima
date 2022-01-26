@@ -15,6 +15,7 @@ const getIcon = (name) => < Icon icon={name}
 />;
 
 const sidebarConfig = [{
+<<<<<<< HEAD
     title: 'dashboard',
     path: '/dashboard/app',
     icon: getIcon(pieChart2Fill)
@@ -44,11 +45,43 @@ const sidebarConfig = [{
     path: '/register',
     icon: getIcon(personAddFill)
 },
+=======
+        title: 'dashboard',
+        path: '/dashboard/app',
+        icon: getIcon(pieChart2Fill)
+    },
+    {
+        title: 'students',
+        path: '/dashboard/user',
+        icon: getIcon(peopleFill)
+    },
+    {
+        title: 'timetables',
+        path: '/dashboard/products',
+        icon: getIcon(shoppingBagFill)
+    },
+    {
+        title: 'timetables',
+        path: '/dashboard/blog',
+        icon: getIcon(fileTextFill)
+    },
+    // {
+    //     title: 'login',
+    //     path: '/login',
+    //     icon: getIcon(lockFill)
+    // },
+    // {
+    //     title: 'register',
+    //     path: '/register',
+    //     icon: getIcon(personAddFill)
+    // },
+>>>>>>> 5794d30580264f70fe0524a3fba0113ed9661008
     // {
     //     title: 'Not found',
     //     path: '/404',
     //     icon: getIcon(alertTriangleFill)
     //}
+
 ];
 
 export default sidebarConfig;

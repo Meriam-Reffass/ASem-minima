@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 // material
 import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 // ----------------------------------------------------------------------
 
@@ -22,20 +24,48 @@ export default function RegisterForm() {
       .required('First name required'),
     lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name required'),
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required')
+    password: Yup.string().required('Password is required'),
   });
+  
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState('');
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+  //
   const formik = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
       email: '',
-      password: ''
+      password: '',
     },
     validationSchema: RegisterSchema,
-    onSubmit: () => {
-      navigate('/dashboard', { replace: true });
-    }
+    onSubmit: async (values) => {
+      const axios = require('axios');
+
+      axios
+        .post('http://localhost:3000/api/register', values)
+        .then((response) => {
+          if (response.status == 200) {
+            localStorage.setItem('token', response.data.data.token);
+            localStorage.setItem('firstName', response.data.data.firstName);
+            localStorage.setItem('lastName', response.data.data.lastName);
+            navigate('/dashboard', { replace: true });
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data.error);
+          setError(error.response.data.error);
+          setOpen(true);
+          
+        });
+    },
   });
 
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
@@ -85,7 +115,7 @@ export default function RegisterForm() {
                     <Icon icon={showPassword ? eyeFill : eyeOffFill} />
                   </IconButton>
                 </InputAdornment>
-              )
+              ),
             }}
             error={Boolean(touched.password && errors.password)}
             helperText={touched.password && errors.password}
@@ -96,12 +126,16 @@ export default function RegisterForm() {
             size="large"
             type="submit"
             variant="contained"
-            loading={isSubmitting}
-          >
+            loading={isSubmitting}>
             Register
           </LoadingButton>
         </Stack>
       </Form>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <MuiAlert onClose={handleClose} elevation={6}  variant="filled" severity="error" sx={{ width: '100%' }}>
+          {error}
+        </MuiAlert>
+      </Snackbar>
     </FormikProvider>
   );
 }
