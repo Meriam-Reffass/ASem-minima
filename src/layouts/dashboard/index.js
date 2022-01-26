@@ -32,21 +32,15 @@ const MainStyle = styled('div')(({ theme }) => ({
 export default function DashboardLayout() {
     const [open, setOpen] = useState(false);
 
-    return ( <
-        RootStyle >
-        <
-        DashboardNavbar onOpenSidebar = {
+    return ( <RootStyle >
+        <DashboardNavbar onOpenSidebar = {
             () => setOpen(true) }
         /> <
         DashboardSidebar isOpenSidebar = { open }
         onCloseSidebar = {
             () => setOpen(false) }
-        /> <
-        MainStyle >
-        <
-        Outlet / >
-        <
-        /MainStyle> <
-        /RootStyle>
+        /> <MainStyle >
+        <Outlet / >
+        </MainStyle> </RootStyle>
     );
 }
