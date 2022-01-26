@@ -41,10 +41,9 @@ const ContentStyle = styled('div')(({ theme }) => ({
 export default function Login() {
     return ( <
         RootStyle title = "Login-ASem" >
-        <
-        AuthLayout >
-        Don’ t have an account ? & nbsp; <
-        Link underline = "none"
+        <AuthLayout >
+        Don’ t have an account ? & nbsp; 
+        <Link underline = "none"
         variant = "subtitle2"
         component = { RouterLink }
         to = "/register" >
@@ -91,7 +90,7 @@ export default function Login() {
         sx = {
             { mt: 3 }
         } >
-        Don’ t have an account ? & nbsp; <
+        Don’ t have an account ? , <
         Link variant = "subtitle2"
         component = { RouterLink }
         to = "/register" >
