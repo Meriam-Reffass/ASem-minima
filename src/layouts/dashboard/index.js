@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 const APP_BAR_MOBILE = 64;
@@ -30,17 +31,30 @@ const MainStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function DashboardLayout() {
-    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
-    return ( <RootStyle >
-        <DashboardNavbar onOpenSidebar = {
-            () => setOpen(true) }
+    const [open, setOpen] = useState(false);
+    const [token, setToken] = useState();
+
+
+
+
+
+
+    return (<RootStyle >
+        {() => {
+            setToken(localStorage.getItem("token"))
+            if (!token)
+                navigate('/login', { replace: true });
+        }}
+        <DashboardNavbar onOpenSidebar={
+            () => setOpen(true)}
         /> <
-        DashboardSidebar isOpenSidebar = { open }
-        onCloseSidebar = {
-            () => setOpen(false) }
+            DashboardSidebar isOpenSidebar={open}
+            onCloseSidebar={
+                () => setOpen(false)}
         /> <MainStyle >
-        <Outlet / >
+            <Outlet />
         </MainStyle> </RootStyle>
     );
 }

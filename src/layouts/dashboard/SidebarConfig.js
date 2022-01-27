@@ -31,11 +31,7 @@ const sidebarConfig = [{
         path: '/dashboard/products',
         icon: getIcon(shoppingBagFill)
     },
-    {
-        title: 'timetables',
-        path: '/dashboard/blog',
-        icon: getIcon(fileTextFill)
-    },
+
     // {
     //     title: 'login',
     //     path: '/login',

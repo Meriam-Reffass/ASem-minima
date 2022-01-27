@@ -54,7 +54,7 @@ export default function RegisterForm() {
       const axios = require('axios');
 
       axios
-        .post('http://localhost:3000/api/register', values)
+        .post('http://localhost:3000/register', values)
         .then((response) => {
           if (response.status == 200) {
             localStorage.setItem('token', response.data.data.token);

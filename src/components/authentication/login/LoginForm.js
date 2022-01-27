@@ -53,7 +53,7 @@ export default function LoginForm() {
     onSubmit: async (values) => {
       const axios = require('axios');
       axios
-        .post('http://localhost:3000/api/login', values)
+        .post('http://localhost:3000/login', values)
         .then((response) => {
           if (response.status == 200) {
             localStorage.setItem('token', response.data.data.token);
