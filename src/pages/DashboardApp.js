@@ -21,29 +21,53 @@ import {
   ProductCartWidget,
 
 } from '../components/_dashboard/products';
+import { useState } from 'react';
+const axios = require("axios");
 
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-   const firstName = localStorage.getItem("firstName");
+
+
+  const [sumNonVerifiedHours, setSumNonVerifiedHours] = useState(0);
+  const [sumVerifiedHours, setSumVerifiedHours] = useState(0);
+  const [sumExclusions, setsumExclusions] = useState(0);
+  const [sumAlerts, setsumAlerts] = useState(0);
+
+
+
+  var path = "http://localhost:3000/api/stats" + (localStorage.role == "admin" ? "" : "/" + localStorage._id);
+  axios.get(path, { headers: { "auth-token": localStorage.token } }).then(resp => {
+    setSumNonVerifiedHours(resp.data.sumNonVerifiedHours)
+    setSumVerifiedHours(resp.data.sumVerifiedHours)
+    setsumExclusions(resp.data.sumExclusions)
+    setsumAlerts(resp.data.sumAlerts)
+  }).catch(err => {
+    console.log(err);
+  })
+
+
+
+
+  const firstName = localStorage.getItem("firstName");
   return (
     <Page title="Dashboard-ASem">
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
-          <Typography variant="h4">Hi, Welcome back {firstName } !</Typography>
+          <Typography variant="h4">Hi, Welcome back {firstName} !</Typography>
         </Box>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWeeklySales />
+            <AppWeeklySales number={sumVerifiedHours} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppNewUsers />
+            <AppNewUsers number={sumNonVerifiedHours} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppItemOrders />
+            <AppItemOrders number={sumAlerts} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppBugReports />
+            <AppBugReports number={sumExclusions} />
           </Grid>
 
           <Grid item xs={12} md={12} lg={12}>
@@ -78,7 +102,10 @@ export default function DashboardApp() {
             <AppTasks />
           </Grid> */}
         </Grid>
-        <ProductCartWidget />
+        {
+          !localStorage.isAdmin &&
+          <ProductCartWidget />
+        }
       </Container>
     </Page>
   );
