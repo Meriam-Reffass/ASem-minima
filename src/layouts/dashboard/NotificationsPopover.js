@@ -33,28 +33,48 @@ import MenuPopover from '../../components/MenuPopover';
 
 // ----------------------------------------------------------------------
 
-const NOTIFICATIONS = [
-   
-  {
-    id: faker.datatype.uuid(),
-    title: 'daily stats has been updated',
-    description: '',
-    avatar: null,
-    type: 'chat_message',
-    createdAt: sub(new Date(), { days: 1, hours: 3, minutes: 30 }),
-    isUnRead: true
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: 'New ALert has been sent ',
-    description: 'to Guido Padberg',
-    avatar: null,
-    type: 'mail',
-    createdAt: sub(new Date(), { days: 2, hours: 3, minutes: 30 }),
-    isUnRead: false
-  },
-  
-];
+var NOTIFICATIONS;
+
+
+if (localStorage.isAdmin == "true") {
+  NOTIFICATIONS = [
+
+    {
+      id: faker.datatype.uuid(),
+      title: 'daily stats has been updated',
+      description: '',
+      avatar: null,
+      type: 'chat_message',
+      createdAt: sub(new Date(), { days: 1, hours: 3, minutes: 30 }),
+      isUnRead: true
+    },
+    {
+      id: faker.datatype.uuid(),
+      title: 'New ALert has been sent ',
+      description: 'to Guido Padberg',
+      avatar: null,
+      type: 'mail',
+      createdAt: sub(new Date(), { days: 2, hours: 3, minutes: 30 }),
+      isUnRead: false
+    },
+
+  ];
+}
+else {
+  NOTIFICATIONS = [
+
+    {
+      id: faker.datatype.uuid(),
+      title: 'New ALert has been sent to you ',
+      description: 'to Guido Padberg',
+      avatar: null,
+      type: 'mail',
+      createdAt: sub(new Date(), { days: 2, hours: 3, minutes: 30 }),
+      isUnRead: true
+    },
+
+  ];
+}
 
 function renderContent(notification) {
   const title = (
