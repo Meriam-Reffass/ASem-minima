@@ -23,14 +23,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {  UserListToolbar, UserMoreMenu } from '../components/_dashboard/user';
-import  UserListHead from '../components/_dashboard/user/UserListHead copy';
+import { UserListToolbar, UserMoreMenu } from '../components/_dashboard/user';
+import UserListHead from '../components/_dashboard/user/UserListHead copy';
 const axios = require("axios")
 const TABLE_HEAD = [
   { id: 'morning', label: 'morning', alignRight: false },
   { id: 'afternoon', label: 'afternoon', alignRight: false },
   { id: '' },
 ];
+import { isEmpty } from 'lodash';
+
 
 
 export default function timetables(props) {
@@ -38,7 +40,7 @@ export default function timetables(props) {
   const [selected, setSelected] = useState(false);
   const [classes, setClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState({});
- 
+
   const handleChange = (event) => {
     setSelected(true)
     setClassID(event.target.value);
@@ -54,38 +56,55 @@ export default function timetables(props) {
         console.log(err)
       })
   }
+
+  if(localStorage.isAdmin=="false" && isEmpty(selectedClass)){
+    axios.get("http://localhost:3000/api/student/"+localStorage._id+"/class", { headers: { "auth-token": localStorage.token } })
+      .then(resp => {
+        setSelectedClass(resp.data)
+        setClassID(resp.data._id)
+        setSelected(true)
+      }).
+      catch(err => {
+        console.log(err)
+      })
+  }
+
   return (
     <Card>
 
-
-      <Box sx={{ p: 3, pb: 1, m: 2 }} dir="ltr">
-        <FormControl fullWidth>
-          <InputLabel variant="standard" id="demo-simple-select-label" >
-            CLass
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="uncontrolled-native"
-            value={classID}
-            label="CLass"
-
-            onChange={handleChange}
-          >{
-              classes.map((row) => {
-                const { _id, className, promo } = row
-                return (
-                  <MenuItem value={_id}>{className} - {promo} </MenuItem>
-
-                )
-
-              })
+      {localStorage.isAdmin == "true" &&
 
 
-            }
+        <Box sx={{ p: 3, pb: 1, m: 2 }} dir="ltr">
+          <FormControl fullWidth>
+            <InputLabel variant="standard" id="demo-simple-select-label" >
+              CLass
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="uncontrolled-native"
+              value={classID}
+              label="CLass"
 
-          </Select>
-        </FormControl>
-      </Box>
+              onChange={handleChange}
+            >{
+                classes.map((row) => {
+                  const { _id, className, promo } = row
+                  return (
+                    <MenuItem value={_id}>{className} - {promo} </MenuItem>
+
+                  )
+
+                })
+
+
+              }
+
+            </Select>
+          </FormControl>
+        </Box>
+      }
+
 
       <Box>
         <Grid container spacing={3}>
@@ -379,7 +398,7 @@ export default function timetables(props) {
 
 
       </Box>
-      
+
     </Card >
   );
 

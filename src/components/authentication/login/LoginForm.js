@@ -60,6 +60,7 @@ export default function LoginForm() {
             localStorage.setItem('token', response.data.data.token);
             localStorage.setItem('firstName', response.data.data.firstName);
             localStorage.setItem('lastName', response.data.data.lastName);
+            localStorage.setItem('email', response.data.data.email);
             localStorage.setItem('_id', response.data.data._id);
             localStorage.setItem('role', response.data.data.role);
             navigate('/dashboard/app', { replace: true });

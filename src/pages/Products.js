@@ -124,12 +124,16 @@ export default function EcommerceShop() {
           <Typography variant="h4" gutterBottom>
             Timetables
           </Typography>
+          {localStorage.isAdmin=="true" &&
+
           <Button
             variant="contained"
             onClick={handleOpen}
             startIcon={<Icon icon={plusFill} />}>
             New Class
           </Button>
+          }
+
           <Modal
             open={open}
             onClose={handleClose}

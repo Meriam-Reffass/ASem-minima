@@ -82,7 +82,7 @@ export default function CartWidget() {
                   setData(result?.text);
                   const token = localStorage.getItem("token");
                   setOpen(false)
-                  axios.post("http://localhost:3000/api/present",
+                  axios.post("http://localhost:3000/api/addPresence",
                     {
                       class: result
                     }, {

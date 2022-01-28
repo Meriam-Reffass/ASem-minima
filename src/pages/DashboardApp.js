@@ -103,7 +103,7 @@ export default function DashboardApp() {
           </Grid> */}
         </Grid>
         {
-          !localStorage.isAdmin &&
+           localStorage.isAdmin !="true" &&
           <ProductCartWidget />
         }
       </Container>

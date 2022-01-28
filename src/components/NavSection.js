@@ -160,9 +160,12 @@ export default function NavSection({ navConfig, ...other }) {
   return (
     <Box {...other}>
       <List disablePadding>
-        {navConfig.map((item) => (
-          <NavItem key={item.title} item={item} active={match} />
-        ))}
+        {navConfig.map((item) => {
+          if (localStorage.isAdmin == "false" && item.title == "students") return;
+          return (
+            <NavItem key={item.title} item={item} active={match} />
+          )
+        })}
       </List>
     </Box>
   );
