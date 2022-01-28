@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 // material
-import { Container, Stack, Typography } from '@mui/material';
+import { Container, Stack, Typography ,Button} from '@mui/material';
 // components
 import Page from '../components/Page';
 import {
@@ -10,6 +10,10 @@ import {
   ProductCartWidget,
   ProductFilterSidebar
 } from '../components/_dashboard/products';
+import { Icon } from '@iconify/react';
+import plusFill from '@iconify/icons-eva/plus-fill';
+
+import Timetables from "../components/timetables"
 //
 import PRODUCTS from '../_mocks_/products';
 
@@ -49,11 +53,19 @@ export default function EcommerceShop() {
   return (
     <Page title="Dashboard: Products | Minimal-UI">
       <Container>
-        <Typography variant="h4" sx={{ mb: 5 }}>
-          Products
-        </Typography>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+          <Typography variant="h4" gutterBottom>
+            Timetables
+          </Typography>
+          <Button
+            variant="contained"
+            to="#"
+            startIcon={<Icon icon={plusFill} />}>
+            New Class
+          </Button>
+        </Stack>
 
-        <Stack
+        {/* <Stack
           direction="row"
           flexWrap="wrap-reverse"
           alignItems="center"
@@ -70,10 +82,10 @@ export default function EcommerceShop() {
             />
             <ProductSort />
           </Stack>
-        </Stack>
+        </Stack> */}
 
-        <ProductList products={PRODUCTS} />
-        <ProductCartWidget />
+        {/* <ProductCartWidget /> */}
+        <Timetables></Timetables>
       </Container>
     </Page>
   );
