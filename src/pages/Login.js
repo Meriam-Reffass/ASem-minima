@@ -39,67 +39,67 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 export default function Login() {
-    return ( <
-        RootStyle title = "Login-ASem" >
+    return (<
+        RootStyle title="Login-ASem" >
         <AuthLayout >
-        Don’ t have an account ? & nbsp; 
-        <Link underline = "none"
-        variant = "subtitle2"
-        component = { RouterLink }
-        to = "/register" >
-        Get started <
+            Don’ t have an account ? & nbsp;
+            <Link underline="none"
+                variant="subtitle2"
+                component={RouterLink}
+                to="/register" >
+                Get started <
         /Link>< /
         AuthLayout > <
-        MHidden width = "mdDown" >
-        <
+        MHidden width="mdDown" >
+                    <
         SectionStyle >
-        <
-        Typography variant = "h3"
-        sx = {
-            { px: 5, mt: 10, mb: 5 }
-        } >
-        Hi, Welcome Back <
+                        <
+        Typography variant="h3"
+                            sx={
+                                { px: 5, mt: 10, mb: 5 }
+                            } >
+                            Hi, Welcome Back <
         /Typography><
-        img src = "/static/illustrations/illustration_login.png"
-        alt = "login" / >
-        <
+                                img src="/static/illustrations/illustration_login.png"
+                                alt="login" />
+                            <
         /SectionStyle>< /
         MHidden > <
-        Container maxWidth = "sm" >
-        <
+        Container maxWidth="sm" >
+                                <
         ContentStyle >
-        <
-        Stack sx = {
-            { mb: 5 }
-        } >
-        <
-        Typography variant = "h4"
-        gutterBottom >
-        Sign in to ASem <
+                                    <
+        Stack sx={
+                                            { mb: 5 }
+                                        } >
+                                        <
+        Typography variant="h4"
+                                            gutterBottom >
+                                            Sign in to ASem <
         /Typography><
-        Typography sx = {
-            { color: 'text.secondary' }
-        } > Enter your details below! < /Typography>< /
-        Stack > { /* <AuthSocial /> */ } <
-        LoginForm / >
-        <
-        MHidden width = "smUp" >
-        <
-        Typography variant = "body2"
-        align = "center"
-        sx = {
-            { mt: 3 }
-        } >
-        Don’ t have an account ? , <
-        Link variant = "subtitle2"
-        component = { RouterLink }
-        to = "/register" >
-        Get started <
+        Typography sx={
+                                                    { color: 'text.secondary' }
+                                                } > Enter your details below! < /Typography>< /
+        Stack > { /* <AuthSocial /> */} <
+                                                    LoginForm />
+                                                <
+        MHidden width="smUp" >
+                                                    <
+        Typography variant="body2"
+                                                        align="center"
+                                                        sx={
+                                                            { mt: 3 }
+                                                        } >
+                                                        Don’ t have an account ? , <
+        Link variant="subtitle2"
+                                                            component={RouterLink}
+                                                            to="/register" >
+                                                            Get started <
         /Link>< /
         Typography > <
         /MHidden>< /
         ContentStyle > <
         /Container>< /
         RootStyle >
-    );
+                                                            );
 }
