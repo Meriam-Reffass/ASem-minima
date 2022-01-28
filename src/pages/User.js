@@ -80,7 +80,8 @@ export default function User() {
   const [orderBy, setOrderBy] = useState('firstName');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
+  if (!localStorage.token)
+    navigate('/login', { replace: true });
   if (users.length == 0) {
     axios.get("http://localhost:3000/api/students", { headers: { "auth-token": localStorage.token } }).then(resp => {
       setUsers(resp.data)

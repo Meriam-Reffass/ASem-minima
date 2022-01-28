@@ -36,17 +36,14 @@ export default function DashboardLayout() {
     const [open, setOpen] = useState(false);
     const [token, setToken] = useState();
 
-
+    if (!localStorage.token)
+        navigate('/login', { replace: true });
 
 
 
 
     return (<RootStyle >
-        {() => {
-            setToken(localStorage.getItem("token"))
-            if (!token)
-                navigate('/login', { replace: true });
-        }}
+
         <DashboardNavbar onOpenSidebar={
             () => setOpen(true)}
         /> <

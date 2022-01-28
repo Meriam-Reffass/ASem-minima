@@ -11,6 +11,7 @@ import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '
 import MenuPopover from '../../components/MenuPopover';
 //
 import account from '../../_mocks_/account';
+import {  useNavigate } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -44,6 +45,12 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(false);
   };
+  const logout = () => {
+    localStorage.removeItem("token")
+    navigate('/login', { replace: true });
+
+  }
+  const navigate = useNavigate();
 
   return (
     <>
@@ -110,7 +117,7 @@ export default function AccountPopover() {
         ))}
 
         <Box sx={{ p: 2, pt: 1.5 }}>
-          <Button fullWidth color="inherit" variant="outlined">
+          <Button onClick={logout} fullWidth color="inherit" variant="outlined">
             Logout
           </Button>
         </Box>

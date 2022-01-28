@@ -56,7 +56,8 @@ export default function EcommerceShop() {
       setOpenFilter(false);
     }
   });
-
+  if (!localStorage.token)
+  navigate('/login', { replace: true });
 
   const [formData, setFormData] = useState({});
   const dates = {
