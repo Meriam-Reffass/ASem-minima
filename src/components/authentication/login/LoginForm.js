@@ -19,6 +19,7 @@ import { LoadingButton } from '@mui/lab';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -42,7 +43,7 @@ export default function LoginForm() {
 
     setOpen(false);
   };
-
+  
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -61,7 +62,7 @@ export default function LoginForm() {
             localStorage.setItem('lastName', response.data.data.lastName);
             localStorage.setItem('_id', response.data.data._id);
             localStorage.setItem('role', response.data.data.role);
-            navigate('/dashboard', { replace: true });
+            navigate('/dashboard/app', { replace: true });
           } else {
             throw 'login failed';
           }

@@ -14,7 +14,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Page from '../components/Page';
 import Label from '../components/Label';
 import { makeStyles } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import Button from '@mui/material/Button';
 
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import {  UserListToolbar, UserMoreMenu } from '../components/_dashboard/user';
 import  UserListHead from '../components/_dashboard/user/UserListHead copy';
 const axios = require("axios")
@@ -30,6 +38,7 @@ export default function timetables(props) {
   const [selected, setSelected] = useState(false);
   const [classes, setClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState({});
+ 
   const handleChange = (event) => {
     setSelected(true)
     setClassID(event.target.value);
@@ -121,7 +130,7 @@ export default function timetables(props) {
                       </TableCell>
 
                       <TableCell align="right">
-                        <UserMoreMenu />
+                        <UserMoreMenu classId={classID} />
                       </TableCell>
                     </TableRow>
 
@@ -159,7 +168,7 @@ export default function timetables(props) {
                       </TableCell>
 
                       <TableCell align="right">
-                        <UserMoreMenu />
+                        <UserMoreMenu classId={classID} />
                       </TableCell>
                     </TableRow>
 
@@ -197,7 +206,7 @@ export default function timetables(props) {
                       </TableCell>
 
                       <TableCell align="right">
-                        <UserMoreMenu />
+                        <UserMoreMenu classId={classID} />
                       </TableCell>
                     </TableRow>
 
@@ -235,7 +244,7 @@ export default function timetables(props) {
                       </TableCell>
 
                       <TableCell align="right">
-                        <UserMoreMenu />
+                        <UserMoreMenu classId={classID} />
                       </TableCell>
                     </TableRow>
 
@@ -273,7 +282,7 @@ export default function timetables(props) {
                       </TableCell>
 
                       <TableCell align="right">
-                        <UserMoreMenu />
+                        <UserMoreMenu classId={classID} />
                       </TableCell>
                     </TableRow>
 
@@ -311,7 +320,7 @@ export default function timetables(props) {
                       </TableCell>
 
                       <TableCell align="right">
-                        <UserMoreMenu />
+                        <UserMoreMenu classId={classID} />
                       </TableCell>
                     </TableRow>
 
@@ -349,7 +358,7 @@ export default function timetables(props) {
                       </TableCell>
 
                       <TableCell align="right">
-                        <UserMoreMenu />
+                        <UserMoreMenu classId={classID} />
                       </TableCell>
                     </TableRow>
 
@@ -370,6 +379,7 @@ export default function timetables(props) {
 
 
       </Box>
+      
     </Card >
   );
 

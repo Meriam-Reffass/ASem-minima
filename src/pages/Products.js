@@ -20,16 +20,18 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+
 const axios = require("axios")
 // ----------------------------------------------------------------------
 
 export default function EcommerceShop() {
   const [openFilter, setOpenFilter] = useState(false);
-
+  const navigate = useNavigate();
   const style = {
     position: 'absolute',
     top: '50%',
@@ -77,7 +79,7 @@ export default function EcommerceShop() {
   const handleChangeCheck = e => {
     const { name, value } = e.target;
     const strings = name.split(".");
-    dates[strings[0]][strings[1]] =  (value=="true")
+    dates[strings[0]][strings[1]] = (value == "true")
     console.log(dates);
   };
 
@@ -87,6 +89,7 @@ export default function EcommerceShop() {
   const [message, setMessage] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const values = { ...formData, ...dates }
@@ -95,6 +98,7 @@ export default function EcommerceShop() {
         setIsError(false);
         setOpenSnackBar(true)
         setMessage("Class added successfully");
+        navigate('/dashboard/products', { replace: true });
 
 
 
@@ -111,7 +115,6 @@ export default function EcommerceShop() {
 
 
   }
-
 
   return (
     <Page title="Dashboard: Products | Minimal-UI">
@@ -241,9 +244,9 @@ export default function EcommerceShop() {
                     </div>
                   </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mt-4">
                   <div className="offset-4 col-8">
-                    <button onClick={handleSubmit} name="submit" type="submit" className="btn btn-primary">Submit</button>
+                    <button onClick={handleSubmit} name="submit" type="submit" className="btn btn-block btn-success">Submit</button>
                   </div>
                 </div>
               </form>
@@ -277,6 +280,7 @@ export default function EcommerceShop() {
             {message}
           </Alert>
         </Snackbar>
+       
 
       </Container>
     </Page>
