@@ -1,9 +1,9 @@
 import { filter } from 'lodash';
 import { Icon } from '@iconify/react';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useState,forwardRef } from 'react';
 import plusFill from '@iconify/icons-eva/plus-fill';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import {
   Card,
@@ -20,6 +20,10 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 // components
 import Page from '../components/Page';
 import Label from '../components/Label';
@@ -29,7 +33,7 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../components/_dash
 const axios = require("axios");
 //
 import USERLIST from '../_mocks_/user';
-
+import { propsToClassKey } from '@mui/styles';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -40,6 +44,22 @@ const TABLE_HEAD = [
   { id: 'isVerified', label: 'Level', alignRight: false },
   { id: '' },
 ];
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: "50%",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  borderRadius: '25px',
+  p: 4,
+};
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 // ----------------------------------------------------------------------
 
@@ -72,7 +92,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function User() {
+export default function User(props) {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState([]);
@@ -80,8 +100,21 @@ export default function User() {
   const [orderBy, setOrderBy] = useState('firstName');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [classes, setClasses] = useState([]);
+  const navigate = useNavigate();
+
+
   if (!localStorage.token)
     navigate('/login', { replace: true });
+  if (classes.length == 0) {
+    axios.get("http://localhost:3000/api/classes", { headers: { "auth-token": localStorage.token } })
+      .then(resp => {
+        setClasses(resp.data)
+      }).
+      catch(err => {
+        console.log(err)
+      })
+  }
   if (users.length == 0) {
     axios.get("http://localhost:3000/api/students", { headers: { "auth-token": localStorage.token } }).then(resp => {
       setUsers(resp.data)
@@ -91,6 +124,45 @@ export default function User() {
       })
   }
 
+  const [formData, setFormData] = useState({});
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState("");
+  const handleUpdate = e => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const values = { ...formData }
+    axios.post("http://localhost:3000/api/students", values, { headers: { "auth-token": localStorage.token } })
+      .then(resp => {
+        setIsError(false);
+        setOpenSnackBar(true)
+        setMessage("Class added successfully");
+        navigate('/dashboard/user', { replace: true });
+
+
+
+      }).
+      catch(err => {
+        console.log(err)
+        setMessage(err.response.data.error);
+        setOpenSnackBar(true);
+        setIsError(true);
+
+      })
+    setOpen(false)
+    console.log(values);
+
+
+  }
 
 
   const handleRequestSort = (event, property) => {
@@ -154,11 +226,67 @@ export default function User() {
           </Typography>
           <Button
             variant="contained"
-            component={RouterLink}
-            to="#"
+            onClick={handleOpen}
+
             startIcon={<Icon icon={plusFill} />}>
             New Student
           </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Add className
+                <hr />
+              </Typography>
+              <form >
+                <div className="form-group row">
+                  <label htmlFor="" className="col-4 col-form-label">class Name</label>
+                  <div className="col-8">
+                    <input id="" name="firstName" type="text" onChange={handleUpdate} className="form-control" />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label htmlFor="" className="col-4 col-form-label">class Name</label>
+                  <div className="col-8">
+                    <input id="" name="lastName" type="text" onChange={handleUpdate} className="form-control" />
+                  </div>
+                </div>
+                <div className="form-group row mt-2">
+                  <label htmlFor="email" className="col-4 col-form-label">Email</label>
+                  <div className="col-8">
+                    <input id="email" name="email" onChange={handleUpdate} type="email" className="form-control" />
+                  </div>
+                </div>
+                <div className="form-group row mt-2">
+                  <label htmlFor="password" className="col-4 col-form-label">Password</label>
+                  <div className="col-8">
+                    <input id="password" name="password" onChange={handleUpdate} type="password" className="form-control" />
+                  </div>
+                </div>
+                <div className="form-group row mt-2">
+                  <label htmlFor="promo" className="col-4 col-form-label">Class</label>
+                  <div className="col-8">
+                    <select id="class" name="studyClass" onChange={handleUpdate} className="form-control" >
+                      {
+                        classes.map(element => <option value={element._id}> {element.className} - {element.promo}</option>)
+
+                      }
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-group row mt-4">
+                  <div className="offset-4 col-8">
+                    <button onClick={handleSubmit} name="submit" type="submit" className="btn btn-block btn-success">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </Box>
+          </Modal>
         </Stack>
 
         <Card>
@@ -255,7 +383,13 @@ export default function User() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Card>
-      </Container>
-    </Page>
+        <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity={isError && "error" || "success"} sx={{ width: '100%' }}>
+            {message}
+          </Alert>
+        </Snackbar>
+
+      </Container >
+    </Page >
   );
 }
