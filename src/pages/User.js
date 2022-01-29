@@ -137,6 +137,7 @@ export default function User(props) {
       ...prevState,
       [name]: value
     }));
+    console.log(formData);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -244,15 +245,15 @@ export default function User(props) {
               </Typography>
               <form >
                 <div className="form-group row">
-                  <label htmlFor="" className="col-4 col-form-label">class Name</label>
+                  <label htmlFor="" className="col-4 col-form-label">first Name</label>
                   <div className="col-8">
-                    <input id="" name="firstName" type="text" onChange={handleUpdate} className="form-control" />
+                    <input id="firstName" name="firstName" type="text" onChange={handleUpdate} className="form-control" />
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label htmlFor="" className="col-4 col-form-label">class Name</label>
+                  <label htmlFor="" className="col-4 col-form-label">last Name</label>
                   <div className="col-8">
-                    <input id="" name="lastName" type="text" onChange={handleUpdate} className="form-control" />
+                    <input id="lastName" name="lastName" type="text" onChange={handleUpdate} className="form-control" />
                   </div>
                 </div>
                 <div className="form-group row mt-2">
@@ -271,6 +272,7 @@ export default function User(props) {
                   <label htmlFor="promo" className="col-4 col-form-label">Class</label>
                   <div className="col-8">
                     <select id="class" name="studyClass" onChange={handleUpdate} className="form-control" >
+                      <option value=""></option>
                       {
                         classes.map(element => <option value={element._id}> {element.className} - {element.promo}</option>)
 
