@@ -63,6 +63,7 @@ export default function LoginForm() {
             localStorage.setItem('email', response.data.data.email);
             localStorage.setItem('_id', response.data.data._id);
             localStorage.setItem('role', response.data.data.role);
+            localStorage.setItem('isAdmin', (response.data.data.role=="admin"));
             navigate('/dashboard/app', { replace: true });
           } else {
             throw 'login failed';

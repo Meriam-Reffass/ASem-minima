@@ -36,7 +36,7 @@ import MenuPopover from '../../components/MenuPopover';
 var NOTIFICATIONS;
 
 
-if (localStorage.isAdmin == "true") {
+if (localStorage.role == "admin") {
   NOTIFICATIONS = [
 
     {

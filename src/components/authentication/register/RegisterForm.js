@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { useState,forwardRef } from 'react';
+import { useState, forwardRef } from 'react';
 import { Icon } from '@iconify/react';
 import { useFormik, Form, FormikProvider } from 'formik';
 import eyeFill from '@iconify/icons-eva/eye-fill';
@@ -30,7 +30,7 @@ export default function RegisterForm() {
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
     password: Yup.string().required('Password is required'),
   });
-  
+
   const [open, setOpen] = useState(false);
   const [error, setError] = useState('');
 
@@ -60,6 +60,10 @@ export default function RegisterForm() {
             localStorage.setItem('token', response.data.data.token);
             localStorage.setItem('firstName', response.data.data.firstName);
             localStorage.setItem('lastName', response.data.data.lastName);
+            localStorage.setItem('email', response.data.data.email);
+            localStorage.setItem('_id', response.data.data._id);
+            localStorage.setItem('role', response.data.data.role);
+            localStorage.setItem('isAdmin', (response.data.data.role == "admin"));
             navigate('/dashboard', { replace: true });
           }
         })
@@ -67,7 +71,7 @@ export default function RegisterForm() {
           console.log(error.response.data.error);
           setError(error.response.data.error);
           setOpen(true);
-          
+
         });
     },
   });
