@@ -1,3 +1,21 @@
+Notre projet consiste à réaliser une application web pour la gestion de présence à l’INPT. 
+Cette application doit permettre aux différents acteurs à savoir les étudiants, et le service de 
+scolarité, de marquer et de gérer la présence facilement de manière aussi simple et intuitive que 
+possible pour améliorer le rendement.
+les technologies qu'on a utilisees sont:
+• React 
+• NodeJS 
+• Express 
+Pour lancer le projet, il suffit de tapper les commandes suivantes:
+npm install/npm start
+
+
+
+
+
+
+
+
 ## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
